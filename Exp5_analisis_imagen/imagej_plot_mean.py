@@ -1,12 +1,14 @@
-"""Graficación de los valores de irradiancia de las imagenes de prueba (práctica 5a)"""
+"""Graficación de los valores de irradiancia de las imagenes de prueba (práctica 5a)
+solo para las restantes de imageJ"""
 
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
 # Leer el archivo Excel
-df = pd.read_excel("Exp5_analisis_imagen/roiStats.xlsx")
-# df = pd.read_excel("Exp5_analisis_imagen/pixelIrradiance.xlsx")
+csv_red = pd.read_csv("Exp5_analisis_imagen/data_mean_red.csv")
+csv_green = pd.read_csv("Exp5_analisis_imagen/data_mean_green.csv")
+csv_blue = pd.read_csv("Exp5_analisis_imagen/data_mean_blue.csv")
 
 # Extraer columnas como arrays de NumPy
 # errors = [df["Rstd"].to_numpy()]
@@ -24,45 +26,61 @@ format_plot = dict(marker="o", ls="-", lw="0.5", fillstyle="none")
 colors = {"red": "#FF0000", "green": "#00FF00", "blue": "#0000FF"}
 
 # Gráfica de los puntos con barras de error radiales
+# ----RED
+ax.errorbar(
+    angles,
+    csv_red["Mean"].to_numpy(),
+    yerr=csv_red["StdDev"].to_numpy(),
+    fmt="none",
+    color=colors["red"],
+)
 ax.plot(
     angles,
-    df["Rmean"].to_numpy(),
+    csv_red["Mean"].to_numpy(),
     label="Irradiancia Roja",
     color=colors["red"],
     **format_plot
 )
+# ---- BLUE
+ax.errorbar(
+    angles,
+    csv_blue["Mean"].to_numpy(),
+    yerr=csv_blue["StdDev"].to_numpy(),
+    fmt="none",
+    color=colors["blue"],
+)
+
 ax.plot(
     angles,
-    df["Gmean"].to_numpy(),
+    csv_green["Mean"].to_numpy(),
     label="Irradiancia Verde",
     color=colors["green"],
     **format_plot
 )
+
+# ---- GREEN
+ax.errorbar(
+    angles,
+    csv_green["Mean"].to_numpy(),
+    yerr=csv_green["StdDev"].to_numpy(),
+    fmt="none",
+    color=colors["green"],
+)
+
 ax.plot(
     angles,
-    df["Bmean"].to_numpy(),
+    csv_blue["Mean"].to_numpy(),
     label="Irradiancia Azul",
     color=colors["blue"],
     **format_plot
 )
 
-# ax.errorbar(
-#     angles,
-#     radii,
-#     yerr=errors,
-#     fmt=".",
-#     color="b",
-#     ecolor="r",
-#     capsize=5,
-#     label="Incertidumbre",
-# )
-
 # Personalización del gráfico
 # ax.set_title("Ley de Malus", va="bottom")
 ax.set_rlabel_position(95)
-ax.set_rticks(np.arange(0, 0.5, 0.1))  # Less radial ticks
+#ax.set_rticks(np.arange(0, 1, 0.1))  # Less radial ticks
 ax.legend()
 
 # Mostrar la gráfica
-fig.savefig("Exp5_analisis_imagen/plot_malus_a.png", dpi=300)
+fig.savefig("Exp5_analisis_imagen/5a_plot_imagej_mean.png", dpi=300)
 plt.show()
