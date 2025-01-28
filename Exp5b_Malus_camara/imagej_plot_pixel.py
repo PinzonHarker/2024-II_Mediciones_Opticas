@@ -7,9 +7,9 @@ import pandas as pd
 from scipy.optimize import curve_fit
 
 # Leer el archivo Excel
-csv_red = pd.read_excel(r"Exp5b_Malus_camara\malus_mean_area1.xlsx", sheet_name="red")
-csv_green = pd.read_excel(r"Exp5b_Malus_camara\malus_mean_area1.xlsx", sheet_name="green")
-csv_blue = pd.read_excel(r"Exp5b_Malus_camara\malus_mean_area1.xlsx", sheet_name="blue")
+csv_red = pd.read_csv(r"Exp5b_Malus_camara\pixel3_red.csv")
+csv_green = pd.read_csv(r"Exp5b_Malus_camara\pixel3_green.csv")
+csv_blue = pd.read_csv(r"Exp5b_Malus_camara\pixel3_blue.csv")
 
 # Extraer columnas como arrays de NumPy
 # errors = [df["Rstd"].to_numpy()]
@@ -28,14 +28,6 @@ colors = {"red": "#FF0000", "green": "#00FF00", "blue": "#0000FF"}
 
 # Gráfica de los puntos con barras de error radiales
 # ----RED
-ax.errorbar(
-    angles,
-    csv_red["Mean"].to_numpy(),
-    yerr=csv_red["ERR"].to_numpy(),
-    fmt="none",
-    color=colors["red"],
-    alpha=0.5,
-)
 ax.plot(
     angles,
     csv_red["Mean"].to_numpy(),
@@ -45,15 +37,6 @@ ax.plot(
     **format_plot
 )
 # ---- BLUE
-ax.errorbar(
-    angles,
-    csv_blue["Mean"].to_numpy(),
-    yerr=csv_blue["ERR"].to_numpy(),
-    fmt="none",
-    color=colors["blue"],
-    alpha=0.5,
-)
-
 ax.plot(
     angles,
     csv_blue["Mean"].to_numpy(),
@@ -64,15 +47,6 @@ ax.plot(
 )
 
 # ---- GREEN
-ax.errorbar(
-    angles,
-    csv_green["Mean"].to_numpy(),
-    yerr=csv_green["ERR"].to_numpy(),
-    fmt="none",
-    color=colors["green"],
-    alpha=0.5,
-)
-
 ax.plot(
     angles,
     csv_green["Mean"].to_numpy(),
@@ -105,5 +79,5 @@ ax.set_rlabel_position(270)
 ax.legend()
 
 # Mostrar la gráfica
-fig.savefig("Exp5b_Malus_camara/5b_plot_camera_mean1.png", dpi=400)
+fig.savefig("Exp5b_Malus_camara/5b_plot_camera_pixel3.png", dpi=400)
 plt.show()
