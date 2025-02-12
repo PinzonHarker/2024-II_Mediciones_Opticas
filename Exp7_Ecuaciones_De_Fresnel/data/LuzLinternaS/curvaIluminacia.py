@@ -42,6 +42,7 @@ results_df["Ángulo (radianes)"] = np.radians(results_df["Ángulo (grados)"])
 print(results_df)
 
 
+
 # Graficar iluminancia vs ángulo en radianes con barras de error para cada directorio
 plt.figure(figsize=(8, 5))
 for directorio in results_df["Directorio"].unique():
