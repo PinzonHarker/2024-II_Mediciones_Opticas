@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 plt.rcParams.update({'font.size': 14})
 
 # Read the CSV file
-data = pd.read_csv(r"Exp5b_Malus_camara\linealidad.csv")
+data = pd.read_csv(r"linealidad.csv")
 
 # Assuming the CSV has columns 'x', 'y', and 'yerr' for x values, y values, and y errors respectively
 x = np.radians(range(20, 75, 5))
@@ -51,6 +51,6 @@ plt.xlim([min(x) - 2 * xerr, max(x) + 2 * xerr])
 plt.ylim([0, 750])
 plt.subplots_adjust(top=0.9)
 # Save the plot with a resolution of 400 DPI
-plt.savefig(r"Exp5b_Malus_camara\plot_linealidad.png", dpi=400)
+plt.savefig(r"plot_linealidad.png", dpi=400)
 # Show the plot
 plt.show()

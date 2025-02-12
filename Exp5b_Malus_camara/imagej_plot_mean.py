@@ -7,9 +7,9 @@ import pandas as pd
 from scipy.optimize import curve_fit
 
 # Leer el archivo Excel
-csv_red = pd.read_excel(r"Exp5b_Malus_camara\malus_mean_area1.xlsx", sheet_name="red")
-csv_green = pd.read_excel(r"Exp5b_Malus_camara\malus_mean_area1.xlsx", sheet_name="green")
-csv_blue = pd.read_excel(r"Exp5b_Malus_camara\malus_mean_area1.xlsx", sheet_name="blue")
+csv_red = pd.read_excel(r"malus_mean_area1.xlsx", sheet_name="red")
+csv_green = pd.read_excel(r"malus_mean_area1.xlsx", sheet_name="green")
+csv_blue = pd.read_excel(r"malus_mean_area1.xlsx", sheet_name="blue")
 
 # Extraer columnas como arrays de NumPy
 # errors = [df["Rstd"].to_numpy()]
@@ -105,5 +105,5 @@ ax.set_rlabel_position(270)
 ax.legend()
 
 # Mostrar la gráfica
-fig.savefig("Exp5b_Malus_camara/5b_plot_camera_mean1.png", dpi=400)
+fig.savefig("5b_plot_camera_mean1.png", dpi=400)
 plt.show()
