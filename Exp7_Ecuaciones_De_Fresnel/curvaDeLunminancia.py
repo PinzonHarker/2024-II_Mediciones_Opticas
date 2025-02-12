@@ -4,10 +4,12 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 # Datos extraídos de la imagen
-angulos_grados = np.array([30, 50, 60, 65, 70])
-iluminancia = np.array([6163.4353, 24197.12963, 39188.91228, 57368.42565, 73187.77217])/73187.77217
-incertidumbre = np.array([0.068281, 0.863878,
-                          1.501598, 1.892725, 0.636748])/73187.77217
+
+angulos_grados = np.array([30, 35, 40, 45, 50, 55, 60, 65, 70, 75])
+iluminancia = np.array([6163.4353, 25511.92495, 20367.8784, 27558.66337, 24197.12963,
+                        58118.78424, 39188.91228, 57368.42565, 73187.77217, 70553.20697])/73187.77217
+incertidumbre = np.array([0.068281, 1.836186, 0.317334, 0.573224, 0.863878,
+                          1.501598, 0.501228, 1.892725, 0.636748, 0.276620])/73187.77217
 
 # Convertir ángulos a radianes
 angulos_radianes = np.radians(angulos_grados)
