@@ -128,11 +128,44 @@ plt.legend()
 plt.show()
 
 
+
+
+# Graficar los otros directorios normalizado
+plt.figure(figsize=(8, 5))
+labels = ["Polarizacion S", "Polarizacion P", "Luz natural"]
+for i, directorio in enumerate(otros_directorios):
+    subset = results_df[results_df["Directorio"] == directorio]
+    plt.errorbar(subset["Ángulo (radianes)"], 
+                 subset["Iluminancia promedio (lx)"]/max(subset["Iluminancia promedio (lx)"]), 
+                 yerr=subset["Incertidumbre (lx)"]/max(subset["Iluminancia promedio (lx)"]), 
+                 fmt='o', capsize=5, label=labels[i])
+
+# Configuración de la gráfica para los otros directorios
+plt.xlabel("Ángulo (radianes)")
+plt.ylabel("Iluminancia (lx)")
+plt.grid(True, linestyle="--", alpha=0.6)
+plt.legend()
+plt.show()
+
+# Configuración de la gráfica
+plt.xlabel("Ángulo (radianes)")
+plt.ylabel("Iluminancia (lx)")
+plt.title("Iluminancia vs Ángulo con Incertidumbre (Múltiples Directorios)")
+plt.grid(True, linestyle="--", alpha=0.6)
+plt.legend()
+
+# Mostrar la gráfica
+plt.show()
+
+results_df_original = results_df.copy()
+
 ## Ajuste para datos de Luz linterna con polarizacion P
 
 # Identificar datos que son cero para el tercer directorio
 tercer_directorio = results_df["Directorio"].unique()[2]
 subset_tercer_directorio = results_df[results_df["Directorio"] == tercer_directorio]
+subset_tercer_directorio_original = results_df_original[results_df_original["Directorio"] == tercer_directorio]  
+
 
 # Filtrar filas donde la iluminancia promedio es cero
 datos_cero = subset_tercer_directorio[subset_tercer_directorio["Iluminancia promedio (lx)"] == 0]
@@ -146,6 +179,7 @@ print(results_df)
 
 # Remover filas con ángulo de 80 grados para el tercer directorio
 results_df = results_df[~((results_df["Directorio"] == tercer_directorio) & (results_df["Ángulo (grados)"] == 80))]
+subset_tercer_directorio_original = subset_tercer_directorio_original[~(subset_tercer_directorio_original["Ángulo (grados)"] == 80)]
 
 print("Datos después de remover ángulo de 80 grados para el tercer directorio:")
 print(results_df)
@@ -154,6 +188,7 @@ print(results_df)
 # Graficar solo los datos de polarización P
 plt.figure(figsize=(8, 5))
 subset_polarizacion_p = results_df[results_df["Directorio"] == tercer_directorio]
+
 plt.errorbar(subset_polarizacion_p["Ángulo (radianes)"], 
              subset_polarizacion_p["Iluminancia promedio (lx)"], 
              yerr=subset_polarizacion_p["Incertidumbre (lx)"], 
@@ -180,8 +215,8 @@ y_spline = spline_func(x_spline)
 
 plt.figure(figsize=(8,5))
 plt.plot(x_spline, y_spline, '-', label="Interpolación Spline P")
-plt.errorbar(subset_polarizacion_p["Ángulo (radianes)"], subset_polarizacion_p["Iluminancia promedio (lx)"],
-             yerr=subset_polarizacion_p["Incertidumbre (lx)"],
+plt.errorbar(subset_tercer_directorio_original["Ángulo (radianes)"], subset_tercer_directorio_original["Iluminancia promedio (lx)"],
+             yerr=subset_tercer_directorio_original["Incertidumbre (lx)"],
              fmt='o', capsize=5, label="Datos P")
 plt.xlabel("Ángulo (radianes)")
 plt.ylabel("Iluminancia (lx)")
@@ -217,6 +252,7 @@ fit_values = fresnel_r_para_squared(theta_fit, n_t_fit)
 print(n_t_fit)
 # Graficar ajuste
 plt.plot(theta_fit, fit_values, label="Ajuste Fresnel r_para²")
+plt.errorbar(x_p, y_p/np.max(y_p), yerr=subset_polarizacion_p["Incertidumbre (lx)"]/np.max(y_p), fmt='o', label="Datos")
 plt.legend()
 plt.show()
 
