@@ -117,15 +117,6 @@ plt.grid(True, linestyle="--", alpha=0.6)
 plt.legend()
 plt.show()
 
-# Configuración de la gráfica
-plt.xlabel("Ángulo (radianes)")
-plt.ylabel("Iluminancia (lx)")
-plt.title("Iluminancia vs Ángulo con Incertidumbre (Múltiples Directorios)")
-plt.grid(True, linestyle="--", alpha=0.6)
-plt.legend()
-
-# Mostrar la gráfica
-plt.show()
 
 
 
@@ -147,15 +138,6 @@ plt.grid(True, linestyle="--", alpha=0.6)
 plt.legend()
 plt.show()
 
-# Configuración de la gráfica
-plt.xlabel("Ángulo (radianes)")
-plt.ylabel("Iluminancia (lx)")
-plt.title("Iluminancia vs Ángulo con Incertidumbre (Múltiples Directorios)")
-plt.grid(True, linestyle="--", alpha=0.6)
-plt.legend()
-
-# Mostrar la gráfica
-plt.show()
 
 results_df_original = results_df.copy()
 
