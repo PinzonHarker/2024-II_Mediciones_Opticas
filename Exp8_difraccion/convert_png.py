@@ -7,7 +7,7 @@ import imageio
 # input_folder = r'C:\Users\pinzo\Downloads\Optica\malus_png\test'
 # output_folder = r'C:\Users\pinzo\Downloads\Optica\malus_png\test_png'
 
-input_folder = r'../data'
+input_folder = r'C:\Users\pinzo\OneDrive - Universidad Nacional de Colombia\Docs\Universidad\2024-2\Mediciones en Óptica\data_dif\left'
 output_folder = r'data'
 
 # Crear el directorio de salida si no existe
