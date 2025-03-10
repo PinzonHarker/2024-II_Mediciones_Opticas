@@ -6,10 +6,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.optimize import curve_fit
 
+i = 3
+
 # Leer el archivo Excel
-csv_red = pd.read_csv(r"Exp5b_Malus_camara\pixel3_red.csv")
-csv_green = pd.read_csv(r"Exp5b_Malus_camara\pixel3_green.csv")
-csv_blue = pd.read_csv(r"Exp5b_Malus_camara\pixel3_blue.csv")
+csv_red = pd.read_csv(fr"Exp5b_Malus_camara\pixel{i}_red.csv")
+csv_green = pd.read_csv(fr"Exp5b_Malus_camara\pixel{i}_green.csv")
+csv_blue = pd.read_csv(fr"Exp5b_Malus_camara\pixel{i}_blue.csv")
 
 # Extraer columnas como arrays de NumPy
 # errors = [df["Rstd"].to_numpy()]
@@ -79,5 +81,5 @@ ax.set_rlabel_position(270)
 ax.legend()
 
 # Mostrar la gráfica
-fig.savefig("Exp5b_Malus_camara/5b_plot_camera_pixel3.png", dpi=400)
+fig.savefig(f"Exp5b_Malus_camara/5b_plot_camera_pixel{i}.pdf", dpi=400)
 plt.show()

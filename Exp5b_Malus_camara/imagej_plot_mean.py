@@ -7,9 +7,10 @@ import pandas as pd
 from scipy.optimize import curve_fit
 
 # Leer el archivo Excel
-csv_red = pd.read_excel(r"malus_mean_area1.xlsx", sheet_name="red")
-csv_green = pd.read_excel(r"malus_mean_area1.xlsx", sheet_name="green")
-csv_blue = pd.read_excel(r"malus_mean_area1.xlsx", sheet_name="blue")
+i = 2
+csv_red = pd.read_excel(fr"Exp5b_Malus_camara/malus_mean_area{i}.xlsx", sheet_name="red")
+csv_green = pd.read_excel(fr"Exp5b_Malus_camara/malus_mean_area{i}.xlsx", sheet_name="green")
+csv_blue = pd.read_excel(fr"Exp5b_Malus_camara/malus_mean_area{i}.xlsx", sheet_name="blue")
 
 # Extraer columnas como arrays de NumPy
 # errors = [df["Rstd"].to_numpy()]
@@ -96,7 +97,7 @@ angles_fine = np.linspace(0, 2 * np.pi, 1000)
 I_fitted = malus_law(angles_fine, I0_fitted)
 
 # Plot the fitted theoretical curve
-ax.plot(angles_fine, I_fitted, label=f"I = {I0_fitted:.2f} * cos(θ)^2", color="#F400A1", lw=1, ls="--")
+ax.plot(angles_fine, I_fitted, label=f"I = {I0_fitted:.2f} * cos(θ)^2", color="#F400A1", lw=2, ls="--")
 
 # Personalización del gráfico
 # ax.set_title("Ley de Malus", va="bottom")
@@ -105,5 +106,5 @@ ax.set_rlabel_position(270)
 ax.legend()
 
 # Mostrar la gráfica
-fig.savefig("5b_plot_camera_mean1.png", dpi=400)
+fig.savefig(f"5b_plot_camera_mean{i}.pdf")
 plt.show()
